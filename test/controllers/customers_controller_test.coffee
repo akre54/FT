@@ -1,4 +1,4 @@
-Customers = require 'models/customers'
+Customers = require 'models/customers_collection'
 
 describe 'Customers', ->
   beforeEach ->
