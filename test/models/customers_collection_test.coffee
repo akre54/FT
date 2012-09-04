@@ -4,7 +4,7 @@ CustomersCollection = require 'models/customers_collection'
 describe 'Customer', ->
   beforeEach ->
     @model = new Customer()
-    @collection = new CustomersCollection()
+    @collection = new CustomersCollection({model: @model})
 
   afterEach ->
     @model.dispose()
