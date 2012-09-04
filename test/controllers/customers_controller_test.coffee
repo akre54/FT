@@ -1,5 +1,12 @@
-Customers = require 'models/customers_collection'
+Customer = require 'models/customer'
+CustomersCollection = require 'models/customers_collection'
 
 describe 'Customers', ->
   beforeEach ->
-    @model = new Customers()
+    @model      = new Customer()
+    @collection = new CustomersCollection()
+
+  afterEach ->
+    @model.dispose()
+    @collection.dispose()
+

@@ -1,5 +1,5 @@
 Collection = require 'models/base/collection'
-CustomersCollection = require 'models/customers_collection'
+Customer   = require 'models/customer'
 
 module.exports = class CustomersCollections extends Collection
-  model: CustomersCollection
+  model: Customer

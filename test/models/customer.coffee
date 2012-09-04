@@ -10,3 +10,4 @@ describe 'Customer', ->
   it 'should fetch customer info', ->
     @model.fetch()
     expect(@model.get 'balance').to.be
+
