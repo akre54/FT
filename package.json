@@ -1,9 +1,9 @@
 {
-  "author": "Your Name",
-  "name": "package-name",
-  "description": "Package description",
+  "author": "Adam Krebs",
+  "name": "farmtab-mobile",
+  "description": "A mobile payments CSA for market farmers",
   "version": "0.0.1",
-  "homepage": "",
+  "homepage": "http://farmtab.com",
   "repository": {
     "type": "git",
     "url": ""
