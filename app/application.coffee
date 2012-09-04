@@ -2,7 +2,7 @@ Chaplin = require 'chaplin'
 mediator = require 'mediator'
 routes = require 'routes'
 SessionController = require 'controllers/session_controller'
-HeaderController = require 'controllers/header_controller'
+CustomersController = require 'controllers/customers_controller'
 Layout = require 'views/layout'
 
 # The application object
@@ -50,7 +50,7 @@ module.exports = class Application extends Chaplin.Application
     # or navigation views.
     # e.g. new NavigationController()
     new SessionController()
-    new HeaderController()
+    new CustomersController() 
 
   # Create additional mediator properties
   # -------------------------------------
