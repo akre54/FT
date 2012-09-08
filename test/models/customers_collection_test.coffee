@@ -10,3 +10,7 @@ describe 'Customer', ->
     @model.dispose()
     @collection.dispose()
 
+  it 'should fetch users', ->
+    @collection.fetch()
+    @collection.length.should.be 35
+

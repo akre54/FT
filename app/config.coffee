@@ -7,6 +7,6 @@ config.api.root = if production
 else
   'http://dev.farmtab.com:3000'
 
-    config.api.versionRoot = config.api.root + '/v1'
+config.api.versionRoot = config.api.root + '/v1'
 
-    module.exports = config
+module.exports = config
