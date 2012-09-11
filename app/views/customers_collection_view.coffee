@@ -1,7 +1,7 @@
 CollectionView = require 'views/base/collection_view'
-Customer = require 'view/customer'
+CustomerView = require 'views/customer_view'
 
 module.exports = class CustomersCollectionView extends CollectionView
   tagname: 'ul'
   className: 'customer-list'
-  itemView: Customer
+  itemView: CustomerView

@@ -1,6 +1,6 @@
 View = require 'views/base/view'
 template = require 'views/templates/farm'
-CustomersCollectionView = require 'view/customers_collection'
+CustomersCollectionView = require 'views/customers_collection_view'
 
 module.exports = class FarmView extends View
   template: template
