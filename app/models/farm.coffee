@@ -1,14 +1,15 @@
 Model = require 'models/base/model'
+Customer = require 'models/customer'
+CustomersCollection = require 'models/customers_collection'
 
 module.exports = class Farm extends Model
   urlKey: ''
 
   urlPath: ->
-   ''
+   '/farms'
 
   parse: (response) ->
-    options = {model: Farm}
     if response.customers?
-      customers = new CustomersCollection response.customers, options
-      _extend response, {customers}
+      customers = new CustomersCollection response.customers
+      _.extend response, {customers}
     response
