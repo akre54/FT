@@ -1,7 +1,7 @@
 View = require 'views/base/view'
-template = require 'views/templates/customer'
+template = require 'views/templates/customer_item'
 
-module.exports = class CustomerView extends View
+module.exports = class CustomerItemView extends View
   template: template
   tagName: 'li'
   className: 'customer-item'
