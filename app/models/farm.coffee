@@ -4,7 +4,7 @@ module.exports = class Farm extends Model
   urlKey: ''
 
   urlPath: ->
-    '/farms/'
+   ''
 
   parse: (response) ->
     options = {model: Farm}

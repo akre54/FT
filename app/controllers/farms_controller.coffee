@@ -1,4 +1,6 @@
 Controller = require 'controllers/base/controller'
+Farm = require 'models/farm'
+FarmView = require 'views/farm_view'
 
 module.exports = class FarmsController extends Controller
   historyUrl: ''
