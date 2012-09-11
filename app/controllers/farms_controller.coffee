@@ -8,3 +8,4 @@ module.exports = class FarmsController extends Controller
   index: ->
     @model = new Farm()
     @view = new FarmView model: @model
+    @model.fetch()
