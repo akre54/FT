@@ -1,4 +1,4 @@
 module.exports = (match) ->
-  match '', 'farms#index'
+  match '', 'farms'
   match 'customers', 'customers#index'
   match 'customers/:id', 'customers#show'
