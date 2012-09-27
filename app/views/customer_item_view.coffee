@@ -5,3 +5,4 @@ module.exports = class CustomerItemView extends View
   template: template
   tagName: 'li'
   className: 'customer-item'
+  container: '.customer-list'
