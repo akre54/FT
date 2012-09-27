@@ -24,3 +24,4 @@ module.exports = class FarmsController extends Controller
   render: (farm) =>
     @view or= new FarmView
       model: farm
+    @view.render()
