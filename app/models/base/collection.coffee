@@ -1,16 +1,13 @@
 Chaplin = require 'chaplin'
 Model = require 'models/base/model'
+config = require 'config'
 
 module.exports = class Collection extends Chaplin.Collection
+  apiRoot: config.api.versionRoot
   model: Model
 
-  initialize: (models, options) ->
-    @url = options.url if options?.url?
-    super
+  urlPath: ->
+    ''
 
   url: ->
-    urlPath = @urlPath()
-    if urlPath
-      @apiRoot + urlPath
-    else
-      throw new Error('Collection must redefine urlPath')
+    @apiRoot + @urlPath()
