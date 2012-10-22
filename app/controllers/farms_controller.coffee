@@ -1,9 +1,6 @@
 Controller = require 'controllers/base/controller'
 mediator = require 'mediator'
-Farm = require 'models/farm'
 FarmView = require 'views/farm_view'
-CustomersCollection = require 'models/customers_collection'
-CustomersCollectionView = require 'views/customers_collection_view'
 
 module.exports = class FarmsController extends Controller
   title: 'My Farm'
@@ -24,4 +21,3 @@ module.exports = class FarmsController extends Controller
   render: (farm) =>
     @view or= new FarmView
       model: farm
-    @view.render()

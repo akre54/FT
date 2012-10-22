@@ -12,4 +12,5 @@ module.exports = class FarmView extends PageView
     @subview 'customers', new CustomersCollectionView
       collection: @model.get 'customers'
     
-    subview.render() for subview in @subviews
+    @$el.append(subview.render().el) for subview in @subviews
+    @

@@ -5,4 +5,3 @@ module.exports = class CustomersCollectionView extends CollectionView
   tagname: 'ul'
   className: 'customer-list'
   itemView: CustomerItemView
-  container: '.farm-view'
