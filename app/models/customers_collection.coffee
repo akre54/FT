@@ -5,4 +5,4 @@ module.exports = class CustomersCollection extends Collection
   model: Customer
 
   urlPath: ->
-    '/farm/'
+    '/customers/'

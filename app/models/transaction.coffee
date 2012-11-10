@@ -6,4 +6,4 @@ module.exports = class Transaction extends Model
         '/transactions/'
 
     initialize: =>
-        @set 'farm_id', mediator.user
+        @set 'farm_id', mediator.user.id

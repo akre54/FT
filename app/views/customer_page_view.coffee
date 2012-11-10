@@ -11,8 +11,12 @@ module.exports = class CustomerPageView extends PageView
     @delegate 'click', '#add-value', @openAddValue
 
   openAddValue: ->
-    value = parseInt prompt('lets add some value to this bitch'), 10
+    value = parseFloat prompt('lets add some value to this bitch'), 10
+    return unless value
     transaction = new Transaction
       customer_id: @model.id
       amount: value
-    transaction.save()
+    transaction.save {},
+      success:  =>
+        # will re-render the model for us
+        @model.set balance: value + parseFloat(@model.get('balance').slice(1))
