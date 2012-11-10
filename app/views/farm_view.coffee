@@ -13,4 +13,4 @@ module.exports = class FarmView extends PageView
       collection: @model.get 'customers'
     
     @$el.append(subview.render().el) for subview in @subviews
-    @
+    this

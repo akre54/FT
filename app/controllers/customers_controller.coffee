@@ -13,8 +13,6 @@ module.exports = class CustomersController extends Controller
     @collection.fetch()
 
   show: (params) ->
-    #@collection or= new CustomersCollection()
-    #@model = @collection.find params.id
     @model = new Customer id: params.id
     @view = new CustomerPageView model: @model
     @model.fetch()

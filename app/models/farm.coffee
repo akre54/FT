@@ -10,6 +10,6 @@ module.exports = class Farm extends Model
 
   parse: (response) ->
     if response.customers?
-      customers = new CustomersCollection response.customers
+      customers = new CustomersCollection response.customers, parse: yes
       _.extend response, {customers}
     response
