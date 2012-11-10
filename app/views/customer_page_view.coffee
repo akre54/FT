@@ -18,5 +18,5 @@ module.exports = class CustomerPageView extends PageView
       amount: value
     transaction.save {},
       success:  =>
-        # will re-render the model for us
-        @model.set balance: value + parseFloat(@model.get('balance').slice(1))
+        # will re-render the model
+        @model.set balance: value + @model.get('balance')

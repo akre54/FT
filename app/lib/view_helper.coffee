@@ -39,4 +39,4 @@ Handlebars.registerHelper 'with_user', (options) ->
   Handlebars.helpers.with.call(this, context, options)
 
 Handlebars.registerHelper 'number_to_currency', (amount) ->
-  "$#{amount}"
+  "$#{amount.toFixed(2)}"
