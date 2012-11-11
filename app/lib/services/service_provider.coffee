@@ -4,7 +4,7 @@ Chaplin = require 'chaplin'
 module.exports = class ServiceProvider
 
   # Mixin a Subscriber
-  _(@prototype).extend Chaplin.Subscriber
+  _(@prototype).extend Chaplin.EventBroker
 
   loading: false
 

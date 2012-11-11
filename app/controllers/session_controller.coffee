@@ -2,13 +2,14 @@ mediator = require 'mediator'
 Controller = require 'controllers/base/controller'
 User = require 'models/user'
 LoginView = require 'views/login_view'
+FarmTab = require 'lib/services/farm_tab'
 
 module.exports = class SessionController extends Controller
   # Service provider instances as static properties
   # This just hardcoded here to avoid async loading of service providers.
   # In the end you might want to do this.
   @serviceProviders = {
-    # facebook: new Facebook()
+    farmTab: new FarmTab()
   }
 
   # Was the login status already determined?
