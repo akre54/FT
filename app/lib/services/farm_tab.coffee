@@ -43,7 +43,7 @@ module.exports = class FarmTab extends ServiceProvider
       @publishEvent 'loginFail', provider: this, loginContext: loginContext
 
   getUserData: ->
-    @ajax('get', '/customers')
+    @ajax('get', '/farms/me')
 
   processUserData: (response) ->
     @publishEvent 'userData', response
