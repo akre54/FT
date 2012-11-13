@@ -1,23 +1,23 @@
 Controller = require 'controllers/base/controller'
 mediator = require 'mediator'
 FarmView = require 'views/farm_view'
+Farm = require 'models/farm'
 
 module.exports = class FarmsController extends Controller
   title: 'My Farm'
   historyUrl: ''
 
   index: (params = {}) ->
-
     farm = mediator.user
 
     if farm.isNew()
       farm.fetch
         success: =>
-          @render farm
+          @_render farm
     else
-      @render farm
+      @_render farm
 
 
-  render: (farm) =>
+  _render: (farm) =>
     @view or= new FarmView
       model: farm

@@ -1,3 +1,4 @@
+mediator = require 'mediator'
 Model = require 'models/base/model'
 Customer = require 'models/customer'
 CustomersCollection = require 'models/customers_collection'
@@ -10,6 +11,6 @@ module.exports = class Farm extends Model
 
   parse: (response) ->
     if response.customers?
-      customers = new CustomersCollection response.customers, parse: yes
-      _.extend response, {customers}
+      mediator.user.customers = new CustomersCollection response.customers, parse: yes
+      delete response.customers
     response

@@ -8,9 +8,9 @@ module.exports = class Collection extends Chaplin.Collection
     @url = options.url if options?.url?
     super
 
-  urlPath: ->
-    "
-/users/#{@urlParams.login}
-/repos/#{@urlParams.repoName}
-/topics/#{@urlParams.topicNumber}
-/posts/"
+  url: ->
+    urlPath = @urlPath()
+    if urlPath
+      @apiRoot + urlPath
+    else
+      throw new Error('Collection must redefine urlPath')

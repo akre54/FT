@@ -4,16 +4,28 @@ Customer = require 'models/customer'
 CustomerPageView = require 'views/customer_page_view'
 CustomersCollection = require 'models/customers_collection'
 CustomersCollectionView = require 'views/customers_collection_view'
+CreateCustomerView = require 'views/create_customer_view'
 
 module.exports = class CustomersController extends Controller
   historyURL: 'customers'
 
   index: ->
-    mediator.customers or= new CustomersCollection()
-    @view = new CustomersCollectionView collection: mediator.customers
-    mediator.customers.fetch() if mediator.customers.isNew()
+    mediator.user.customers or= new CustomersCollection()
+
+    @collection = mediator.user.customers
+    @view = new CustomersCollectionView collection: @collection
+    @collection.fetch() if @collection.isEmpty()
 
   show: (params) ->
-    @model = mediator.user.customers?.get(params.id) || new Customer id: params.id
+    @model = new Customer id: params.id
     @view = new CustomerPageView model: @model
-    @model.fetch() if @model.isNew
+    @model.fetch()
+
+  create: (params) ->
+    @view = new CreateCustomerView
+      model: new Customer()
+
+    @view.subscribeEvent 'customer:created', (response, customer) ->
+      alert 'customer created!'
+      mediator.user.customers.add customer
+      mediator.publish '!startupController', 'customers', 'index'

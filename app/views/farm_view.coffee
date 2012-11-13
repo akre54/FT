@@ -1,3 +1,4 @@
+mediator = require 'mediator'
 PageView = require 'views/base/page_view'
 template = require 'views/templates/farm'
 Customer = require 'models/customer'
@@ -15,7 +16,10 @@ module.exports = class FarmView extends PageView
 
   renderSubviews: ->
     @subview 'customers', new CustomersCollectionView
-      collection: @model.get 'customers'
+      collection: mediator.user.customers
     
     @$el.append(subview.render().el) for subview in @subviews
     this
+
+  addNewCustomer: ->
+    mediator.publish '!startupController', 'customers', 'create' #, params

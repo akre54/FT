@@ -4,6 +4,7 @@ routes = require 'routes'
 SessionController = require 'controllers/session_controller'
 Layout = require 'views/layout'
 Farm = require 'models/farm'
+CustomersCollection = require 'models/customers_collection'
 
 # The application object
 module.exports = class Application extends Chaplin.Application
@@ -49,13 +50,14 @@ module.exports = class Application extends Chaplin.Application
     # and views which are needed the whole time, for example header, footer
     # or navigation views.
     # e.g. new NavigationController()
-    new SessionController()
+    ## new SessionController()
 
   # Create additional mediator properties
   # -------------------------------------
   initMediator: ->
     # Create a user property
     Chaplin.mediator.user = new Farm()
+    Chaplin.mediator.user.customers = new CustomersCollection()
     # Add additional application-specific properties and methods
     # Seal the mediator
     Chaplin.mediator.seal()
