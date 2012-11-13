@@ -28,4 +28,4 @@ module.exports = class CustomersController extends Controller
     @view.subscribeEvent 'customer:created', (response, customer) ->
       alert 'customer created!'
       mediator.user.customers.add customer
-      mediator.publish '!startupController', 'customers', 'index'
+      mediator.publish '!startupController', 'farms'
