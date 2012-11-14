@@ -22,4 +22,4 @@ module.exports = class FarmView extends PageView
     this
 
   addNewCustomer: ->
-    mediator.publish '!startupController', 'customers', 'create' #, params
+    mediator.publish '!startupController', 'customers', 'create'
