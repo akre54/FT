@@ -8,6 +8,40 @@ mediator = require 'mediator'
 utils = Chaplin.utils.beget Chaplin.utils
 
 _(utils).extend
+  # We don’t use jQuery here because jQuery does not attach an error
+  # handler to the script. In jQuery, a proper error handler only works
+  # for same-origin scripts which can be loaded via XHR.
+  loadLib: (url, success, error, timeout = 7500) ->
+    head = document.head or document.getElementsByTagName('head')[0] or
+      document.documentElement
+    script = document.createElement 'script'
+    script.async = 'async'
+    script.src   = url
+
+    onload = (_, aborted = false) ->
+      return unless (aborted or
+      not script.readyState or script.readyState is 'complete')
+
+      clearTimeout timeoutHandle
+
+      # Handle memory leak in IE
+      script.onload = script.onreadystatechange = script.onerror = null
+      # Remove the script elem and its reference
+      head.removeChild(script) if head and script.parentNode
+      script = undefined
+
+      success() if success and not aborted
+
+    script.onload = script.onreadystatechange = onload
+
+    # This is what jQuery is missing
+    script.onerror = ->
+      onload null, true
+      error() if error
+
+    timeoutHandle = setTimeout script.onerror, timeout
+    head.insertBefore script, head.firstChild
+    
   # Functional helpers for handling asynchronous dependancies and I/O
   # -----------------------------------------------------------------
 
