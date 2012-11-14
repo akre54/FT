@@ -1,15 +1,14 @@
-mediator = require 'mediator'
 utils = require 'lib/utils'
 View = require 'views/base/view'
 template = require 'views/templates/login'
 
 module.exports = class LoginView extends View
   template: template
-  id: 'login'
-  container: '#content-container'
   autoRender: true
+  container: '#page-container'
+  id: 'login'
 
-  # Expects the serviceProviders in the options
+  # Expects the serviceProviders in the options.
   initialize: (options) ->
     super
     @initButtons options.serviceProviders
@@ -17,31 +16,22 @@ module.exports = class LoginView extends View
   # In this project we currently only have one service provider and therefore
   # one button. But this should allow for different service providers.
   initButtons: (serviceProviders) ->
-    for serviceProviderName, serviceProvider of serviceProviders
+    _.each serviceProviders, (serviceProvider, serviceProviderName) =>
+      bind = (fn) =>
+        _(fn).bind this, serviceProviderName, serviceProvider
 
       buttonSelector = ".#{serviceProviderName}"
       @$(buttonSelector).addClass('service-loading')
 
-      loginHandler = _(@loginWith).bind(
-        this, serviceProviderName, serviceProvider
-      )
-      @delegate 'click', buttonSelector, loginHandler
+      @delegate 'click', buttonSelector, bind @loginWith
+      serviceProvider.done bind @serviceProviderLoaded
+      serviceProvider.fail bind @serviceProviderFailed
 
-      loaded = _(@serviceProviderLoaded).bind(
-        this, serviceProviderName, serviceProvider
-      )
-      serviceProvider.done loaded
-
-      failed = _(@serviceProviderFailed).bind(
-        this, serviceProviderName, serviceProvider
-      )
-      serviceProvider.fail failed
-
-  loginWith: (serviceProviderName, serviceProvider, e) ->
-    e.preventDefault()
+  loginWith: (serviceProviderName, serviceProvider, event) ->
+    event.preventDefault()
     return unless serviceProvider.isLoaded()
-    mediator.publish 'login:pickService', serviceProviderName
-    mediator.publish '!login', serviceProviderName
+    @publishEvent 'login:pickService', serviceProviderName
+    @publishEvent '!login', serviceProviderName
 
   serviceProviderLoaded: (serviceProviderName) ->
     @$(".#{serviceProviderName}").removeClass('service-loading')
