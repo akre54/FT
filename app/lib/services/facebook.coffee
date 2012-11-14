@@ -5,12 +5,11 @@ class Facebook extends ServiceProvider
   # Note: This is the ID for an example Facebook app.
   # You might change this to your own application ID.
   # See https://developers.facebook.com/apps
-  facebookAppId = '115149731946795'
+  facebookAppId = '185075494917696'
 
   # The permissions we’re asking for.
   # See https://developers.facebook.com/docs/reference/api/permissions/
-  # In this demo application, we would like to access the user’s likes.
-  scope = 'user_likes'
+  scope = 'publish_stream,user_photos'
 
   name: 'facebook'
 
