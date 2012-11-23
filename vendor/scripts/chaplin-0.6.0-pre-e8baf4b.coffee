@@ -1,5 +1,5 @@
 ###
-Chaplin 1.0.0-pre.
+Chaplin 0.6.0-pre.
 
 Chaplin may be freely distributed under the MIT license.
 For all details and documentation:
@@ -840,38 +840,16 @@ require.define 'chaplin/views/view': (exports, require, module) ->
     subviews: null
     subviewsByName: null
 
-    # Method wrapping to enable `afterRender` and `afterInitialize`
-    # -------------------------------------------------------------
-
-    # Wrap a method in order to call the corresponding
-    # `after-` method automatically
-    wrapMethod: (name) ->
-      instance = this
-      # Enclose the original function
-      func = instance[name]
-      # Set a flag
-      instance["#{name}IsWrapped"] = true
-      # Create the wrapper method
-      instance[name] = ->
-        # Stop if the view was already disposed
-        return false if @disposed
-        # Call the original method
-        func.apply instance, arguments
-        # Call the corresponding `after-` method
-        instance["after#{utils.upcase(name)}"] arguments...
-        # Return the view
-        instance
-
     constructor: ->
       # Wrap `initialize` so `afterInitialize` is called afterwards
       # Only wrap if there is an overring method, otherwise we
       # can call the `after-` method directly
       unless @initialize is View::initialize
-        @wrapMethod 'initialize'
+        utils.wrapMethod this, 'initialize'
 
       # Wrap `render` so `afterRender` is called afterwards
       unless @render is View::render
-        @wrapMethod 'render'
+        utils.wrapMethod this, 'render'
       else
         # Otherwise just bind the `render` method
         @render = _(@render).bind this
@@ -884,9 +862,7 @@ require.define 'chaplin/views/view': (exports, require, module) ->
 
       # Copy some options to instance properties
       if options
-        for prop in ['autoRender', 'container', 'containerMethod']
-          if options[prop]?
-            @[prop] = options[prop]
+        _(this).extend _.pick options, ['autoRender', 'container', 'containerMethod']
 
       # Initialize subviews
       @subviews = []
@@ -1294,10 +1270,11 @@ require.define 'chaplin/views/collection_view': (exports, require, module) ->
       # Start observing the collection
       @addCollectionListeners()
 
-      # Apply options
-      @renderItems = options.renderItems if options.renderItems?
-      @itemView = options.itemView       if options.itemView?
-      @filter options.filterer           if options.filterer?
+      # Apply options to view instance
+      _(this).extend _.pick options, ['renderItems', 'itemView']
+
+      # Apply a filter if one provided
+      @filter options.filterer if options.filterer?
 
     # Binding of collection listeners
     addCollectionListeners: ->
@@ -1672,6 +1649,7 @@ require.define 'chaplin/lib/route': (exports, require, module) ->
     createRegExp: ->
       if _.isRegExp(@pattern)
         @regExp = @pattern
+        @paramNames = @options.names if _.isArray @options.names
         return
 
       pattern = @pattern
@@ -1897,6 +1875,83 @@ require.define 'chaplin/lib/router': (exports, require, module) ->
       # You’re frozen when your heart’s not open
       Object.freeze? this
 
+require.define 'chaplin/lib/delayer': (exports, require, module) ->
+
+  # Delayer
+  # -------
+  #
+  # Add functionality to set unique, named timeouts and intervals
+  # so they can be cleared afterwards when disposing the object.
+  # This is especially useful in your custom View class which inherits
+  # from the standard Chaplin.View.
+  #
+  # Mixin this object to add the delayer capability to any object:
+  # _(object).extend Delayer
+  #
+  # Or to a prototype of a class:
+  # _(@prototype).extend Delayer
+  #
+  # In the dispose method, call `clearDelayed` to remove all pending
+  # timeouts and running intervals:
+  #
+  # dispose: ->
+  #   return if @disposed
+  #   @clearDelayed()
+  #   super
+
+  Delayer =
+
+    setTimeout: (name, time, handler) ->
+      @timeouts ?= {}
+      @clearTimeout name
+      wrappedHandler = =>
+        delete @timeouts[name]
+        handler()
+      handle = setTimeout wrappedHandler, time
+      @timeouts[name] = handle
+      handle
+
+    clearTimeout: (name) ->
+      return unless @timeouts and @timeouts[name]?
+      clearTimeout @timeouts[name]
+      delete @timeouts[name]
+      return
+
+    clearAllTimeouts: ->
+      return unless @timeouts
+      for name, handle of @timeouts
+        @clearTimeout name
+      return
+
+    setInterval: (name, time, handler) ->
+      @clearInterval name
+      @intervals ?= {}
+      handle = setInterval handler, time
+      @intervals[name] = handle
+      handle
+
+    clearInterval: (name) ->
+      return unless @intervals and @intervals[name]
+      clearInterval @intervals[name]
+      delete @intervals[name]
+      return
+
+    clearAllIntervals: ->
+      return unless @intervals
+      for name, handle of @intervals
+        @clearInterval name
+      return
+
+    clearDelayed: ->
+      @clearAllTimeouts()
+      @clearAllIntervals()
+      return
+
+  # You’re frozen when your heart’s not open
+  Object.freeze? Delayer
+
+  module.exports = Delayer
+
 require.define 'chaplin/lib/event_broker': (exports, require, module) ->
   mediator = require 'chaplin/mediator'
 
@@ -2107,6 +2162,28 @@ require.define 'chaplin/lib/utils': (exports, require, module) ->
         ->
           false
 
+    # Function Helpers
+    # ----------------
+
+    # Wrap a method in order to call the corresponding
+    # `after-` method automatically (e.g. `afterRender` or
+    # `afterInitialize`)
+    wrapMethod: (instance, name) ->
+      # Enclose the original function
+      func = instance[name]
+      # Set a flag
+      instance["#{name}IsWrapped"] = true
+      # Create the wrapper method
+      instance[name] = ->
+        # Stop if the instance was already disposed
+        return false if instance.disposed
+        # Call the original method
+        func.apply instance, arguments
+        # Call the corresponding `after-` method
+        instance["after#{utils.upcase(name)}"] arguments...
+        # Return the view
+        instance
+
     # String Helpers
     # --------------
 
@@ -2146,6 +2223,7 @@ require.define 'chaplin': (exports, require, module) ->
   CollectionView = require 'chaplin/views/collection_view'
   Route = require 'chaplin/lib/route'
   Router = require 'chaplin/lib/router'
+  Delayer = require 'chaplin/lib/delayer'
   EventBroker = require 'chaplin/lib/event_broker'
   support = require 'chaplin/lib/support'
   SyncMachine = require 'chaplin/lib/sync_machine'
@@ -2163,6 +2241,7 @@ require.define 'chaplin': (exports, require, module) ->
     CollectionView,
     Route,
     Router,
+    Delayer,
     EventBroker,
     support,
     SyncMachine,
