@@ -8,16 +8,15 @@ module.exports = class FarmsController extends Controller
   historyURL: ''
 
   index: (params = {}) ->
-    farm = mediator.user
+    @model = mediator.user
 
-    if farm.isNew()
-      farm.fetch
+    if @model.isNew()
+      @model.fetch
         success: =>
-          @_render farm
+          @_render()
     else
-      @_render farm
+      @_render()
 
 
-  _render: (farm) =>
-    @view or= new FarmView
-      model: farm
+  _render: =>
+    @view or= new FarmView {@model}

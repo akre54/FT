@@ -13,12 +13,12 @@ module.exports = class CustomersController extends Controller
     mediator.user.customers or= new CustomersCollection()
 
     @collection = mediator.user.customers
-    @view = new CustomersCollectionView collection: @collection
+    @view = new CustomersCollectionView {@collection}
     @collection.fetch() if @collection.isEmpty()
 
   show: (params) ->
     @model = new Customer id: params.id
-    @view = new CustomerPageView model: @model
+    @view = new CustomerPageView {@model}
     @model.fetch()
 
   create: (params) ->
