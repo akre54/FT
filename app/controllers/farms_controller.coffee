@@ -13,10 +13,6 @@ module.exports = class FarmsController extends Controller
     if @model.isNew()
       @model.fetch
         success: =>
-          @_render()
+          @view or= new FarmView {@model}
     else
-      @_render()
-
-
-  _render: =>
-    @view or= new FarmView {@model}
+      @view or= new FarmView {@model}

@@ -6,9 +6,10 @@ CustomersCollection = require 'models/customers_collection'
 CustomersCollectionView = require 'views/customers_collection_view'
 
 module.exports = class FarmView extends PageView
+  autoRender: true
   className: 'farm-view'
-  template: template
   container: '#page-container'
+  template: template
 
   initialize: ->
     super
