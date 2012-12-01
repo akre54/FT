@@ -9,10 +9,7 @@ module.exports = class PageView extends View
   initialize: ->
     super
     if @model or @collection
-      rendered = no
-      @modelBind 'change', =>
-        @render() unless rendered
-        rendered = yes
+      @modelBind 'change', => _.once @render()
 
   renderSubviews: ->
     return
