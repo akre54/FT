@@ -1,5 +1,5 @@
 module.exports = (match) ->
-  match '', 'farms'
-  match 'customers', 'customers#index'
-  match 'customers/new', 'customers#create'
-  match 'customers/:id', 'customers#show', constraints: { id: /^\d+$/ }
+  match '', 'farms', name: 'home'
+  match 'customers', 'customers#index', name: 'customers'
+  match 'customers/new', 'customers#create', name: 'new_customer'
+  match 'customers/:id', 'customers#show', name: 'customer', constraints: { id: /^\d+$/ }

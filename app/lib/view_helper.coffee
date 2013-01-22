@@ -40,3 +40,9 @@ Handlebars.registerHelper 'with_user', (options) ->
 
 Handlebars.registerHelper 'number_to_currency', (amount) ->
   "$#{amount.toFixed(2)}"
+
+Handlebars.registerHelper 'url', (routeName, params..., options) ->
+  url = null
+  mediator.publish '!router:reverse', routeName, params, (result) ->
+    url = result
+  "/#{url}"

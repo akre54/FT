@@ -11,16 +11,9 @@ module.exports = class FarmView extends PageView
   container: '#page-container'
   template: template
 
-  initialize: ->
-    super
-    @delegate 'click', '.add-new-customer', @addNewCustomer
-
   renderSubviews: ->
     @subview 'customers', new CustomersCollectionView
       collection: mediator.user.customers
-    
+
     @$el.append(subview.render().el) for subview in @subviews
     this
-
-  addNewCustomer: ->
-    mediator.publish '!startupController', 'customers', 'new'
