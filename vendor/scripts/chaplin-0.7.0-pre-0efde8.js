@@ -9,7 +9,9 @@
 require.define({'chaplin/application': function(exports, require, module) {
 'use strict';
 
-var Application, Backbone, Dispatcher, EventBroker, Layout, Router, mediator;
+var Application, Backbone, Dispatcher, EventBroker, Layout, Router, mediator, _;
+
+_ = require('underscore');
 
 Backbone = require('backbone');
 
@@ -896,13 +898,16 @@ module.exports = View = (function(_super) {
     return _results;
   };
 
-  View.prototype.delegateEvents = function() {
-    var events, _i, _len, _ref;
+  View.prototype.delegateEvents = function(events) {
+    var classEvents, _i, _len, _ref;
     this.undelegateEvents();
+    if (events) {
+      return this._delegateEvents(events);
+    }
     _ref = utils.getAllPropertyVersions(this, 'events');
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      events = _ref[_i];
-      this._delegateEvents(events);
+      classEvents = _ref[_i];
+      this._delegateEvents(classEvents);
     }
   };
 
@@ -1294,6 +1299,9 @@ module.exports = CollectionView = (function(_super) {
     }
     if (enableAnimation == null) {
       enableAnimation = true;
+    }
+    if (this.animationDuration === 0) {
+      enableAnimation = false;
     }
     position = typeof index === 'number' ? index : this.collection.indexOf(item);
     included = typeof this.filterer === 'function' ? this.filterer(item, position) : true;
