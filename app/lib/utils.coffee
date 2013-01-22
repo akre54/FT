@@ -1,3 +1,4 @@
+_ = require 'underscore'
 Chaplin = require 'chaplin'
 mediator = require 'mediator'
 
@@ -41,7 +42,7 @@ _(utils).extend
 
     timeoutHandle = setTimeout script.onerror, timeout
     head.insertBefore script, head.firstChild
-    
+
   # Functional helpers for handling asynchronous dependancies and I/O
   # -----------------------------------------------------------------
 

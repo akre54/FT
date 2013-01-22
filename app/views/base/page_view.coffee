@@ -1,3 +1,4 @@
+_ = require 'underscore'
 mediator = require 'mediator'
 View = require 'views/base/view'
 
