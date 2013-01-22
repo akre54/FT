@@ -2003,8 +2003,10 @@ module.exports = SyncMachine;
 }});;require.define({'chaplin/lib/utils': function(exports, require, module) {
 'use strict';
 
-var support, utils,
+var support, utils, _,
   __slice = [].slice;
+
+_ = require('underscore');
 
 support = require('chaplin/lib/support');
 
