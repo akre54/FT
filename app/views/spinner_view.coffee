@@ -1,3 +1,4 @@
+$ = require 'jquery'
 View = require 'views/base/view'
 template = require 'views/templates/spinner'
 

@@ -1,3 +1,4 @@
+_ = require 'underscore'
 mediator = require 'mediator'
 Chaplin = require 'chaplin'
 config = require 'config'

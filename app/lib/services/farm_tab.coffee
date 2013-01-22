@@ -1,3 +1,4 @@
+$ = require 'jquery'
 config = require 'config'
 mediator = require 'mediator'
 ServiceProvider = require 'lib/services/service_provider'
