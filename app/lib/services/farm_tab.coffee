@@ -1,5 +1,5 @@
-$ = require 'jquery'
 _ = require 'underscore'
+Backbone = require 'backbone'
 config = require 'config'
 mediator = require 'mediator'
 ServiceProvider = require 'lib/services/service_provider'
@@ -24,7 +24,7 @@ module.exports = class FarmTab extends ServiceProvider
   ajax: (type, url, data) ->
     url = @baseUrl + url
     url += "?access_token=#{@accessToken}" if @accessToken
-    $.ajax {url, data, type, dataType: 'json'}
+    Backbone.ajax {url, data, type, dataType: 'json'}
 
   # Trigger login popup
   triggerLogin: (loginContext) ->
