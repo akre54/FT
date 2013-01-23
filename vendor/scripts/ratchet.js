@@ -479,11 +479,13 @@
   // Attach PUSH event handlers
   // ==========================
 
-  window.addEventListener('touchstart', function () { isScrolling = false; });
-  window.addEventListener('touchmove', function () { isScrolling = true; })
-  window.addEventListener('touchend', touchend);
-  window.addEventListener('click', function (e) { if (getTarget(e)) e.preventDefault(); });
-  window.addEventListener('popstate', popstate);
+
+// AK 1/22/13 - not yet please
+  // window.addEventListener('touchstart', function () { isScrolling = false; });
+  // window.addEventListener('touchmove', function () { isScrolling = true; })
+  // window.addEventListener('touchend', touchend);
+  // window.addEventListener('click', function (e) { if (getTarget(e)) e.preventDefault(); });
+  // window.addEventListener('popstate', popstate);
 
 }();/* ----------------------------------
  * TABS v1.0.0
