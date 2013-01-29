@@ -24,6 +24,8 @@
 
     "handlebars-brunch": ">= 1.0 < 1.5",
 
+    "coffeelint-brunch": ">= 1.0 < 1.5",
+
     "uglify-js-brunch": ">= 1.0 < 1.5",
     "clean-css-brunch": ">= 1.0 < 1.5"
   },
