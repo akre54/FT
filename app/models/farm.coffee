@@ -7,10 +7,10 @@ module.exports = class Farm extends Model
   urlKey: ''
 
   urlPath: ->
-   '/farms'
+    '/farms'
 
  defaults:
-    'accessToken': 'somerandomcraptobesetlater'
+  'accessToken': 'somerandomcraptobesetlater'
 
   parse: (response) ->
     if response.customers?
