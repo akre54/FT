@@ -3,6 +3,7 @@ CustomerItemView = require 'views/customer_item_view'
 
 module.exports = class CustomersCollectionView extends CollectionView
   tagName: 'ul'
-  className: 'list customer-list'
+  id: 'customer-list'
+  className: 'list'
   itemView: CustomerItemView
   autoRender: true

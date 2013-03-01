@@ -17,3 +17,9 @@ module.exports = class HeaderView extends View
     @subscribeEvent 'loginStatus', @render
     @subscribeEvent 'startupController', @render
     @subscribeEvent '!adjustTitle', @render
+
+  events:
+    'click .button-prev': 'goBack'
+
+  goBack: ->
+    window.history.back()

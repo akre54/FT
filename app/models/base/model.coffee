@@ -11,7 +11,7 @@ module.exports = class Model extends Chaplin.Model
     ''
 
   urlParams: ->
-    access_token: mediator.user?.get('accessToken')
+    access_token: mediator.accessToken
 
   urlRoot: ->
     urlPath = @urlPath()

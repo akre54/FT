@@ -60,6 +60,7 @@ module.exports = class Application extends Chaplin.Application
     # Create a user property
     Chaplin.mediator.user = new Farm()
     Chaplin.mediator.user.customers = new CustomersCollection()
-    # Add additional application-specific properties and methods
+    # Set up any semi-globals
+    Chaplin.mediator.accessToken = 'somerandomcraptobesetlater'
     # Seal the mediator
     Chaplin.mediator.seal()

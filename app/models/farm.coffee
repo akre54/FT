@@ -9,9 +9,6 @@ module.exports = class Farm extends Model
   urlPath: ->
     '/farms'
 
- defaults:
-  'accessToken': 'somerandomcraptobesetlater'
-
   parse: (response) ->
     if response.customers?
       mediator.user.customers = new CustomersCollection response.customers, parse: yes
