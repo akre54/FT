@@ -8,10 +8,6 @@ module.exports = class HeaderView extends View
   template: template
   autoRender: yes
 
-  # always has to be the first item in the body for ratchet to work
-  container: 'body'
-  containerMethod: 'prepend'
-
   initialize: ->
     super
     @subscribeEvent 'loginStatus', @render
