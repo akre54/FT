@@ -34,6 +34,8 @@ exports.config =
       max_line_length:
         value: 100
         level: 'warn'
+      indentation:
+        level: 'ignore'
       line_endings:
         level: 'warn'
       no_stand_alone_at:
