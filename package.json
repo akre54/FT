@@ -20,7 +20,7 @@
     "coffee-script-brunch": ">= 1.0 < 1.6",
 
     "css-brunch": ">= 1.0 < 1.6",
-    "stylus-brunch": ">= 1.0 < 1.6",
+    "less-brunch": ">= 1.0 < 1.6",
 
     "handlebars-brunch": ">= 1.0 < 1.6",
 
