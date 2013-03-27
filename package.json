@@ -6,7 +6,7 @@
   "homepage": "http://farmtab.com",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/akre54/FT"
   },
   "engines": {
     "node": "~0.6.10 || 0.8 || 0.9"
