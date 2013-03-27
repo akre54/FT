@@ -31,12 +31,9 @@ module.exports = class Model extends Chaplin.Model
     sep = if full.indexOf('?') >= 0 then '&' else '?'
     params = @urlParams()
     payload = _.keys(params)
-      .map (key) ->
-        [key, params[key]]
-      .filter (pair) ->
-        pair[1]?
-      .map (pair) ->
-        pair.join('=')
+      .map (key) -> [key, params[key]]
+      .filter (pair) -> pair[1] != null
+      .map (pair) -> pair.join('=')
       .join('&')
     url = if payload
       full + sep + payload
