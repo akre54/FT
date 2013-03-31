@@ -20,11 +20,12 @@ module.exports = class LoginView extends View
     _.each serviceProviders, (serviceProvider, serviceProviderName) =>
       bind = (fn) =>
         _.bind fn, this, serviceProviderName, serviceProvider
-      debugger
+      
       buttonSelector = ".#{serviceProviderName}"
-      @$(buttonSelector).addClass('service-loading')
+      @$(buttonSelector)
+        .addClass('service-loading')
+        .on 'click', bind @loginWith
 
-      @delegate 'click', buttonSelector, bind @loginWith
       serviceProvider.done bind @serviceProviderLoaded
       serviceProvider.fail bind @serviceProviderFailed
 
