@@ -8,10 +8,8 @@ require.define({'backbone': function(exports, require, module) {
 
 require.define({'jquery': function(exports, require, module) {
   $.noConflict();
-  var Backbone = require('backbone');
-  module.exports = Backbone.$;
+  module.exports = require('backbone').$;
 }});
-
 require.define({'chaplin': function(exports, require, module) {
   var chaplin = window.Chaplin;
   delete window.Chaplin;
