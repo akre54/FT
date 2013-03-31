@@ -1,0 +1,55 @@
+// add in Bootstrap styles individually -- and only when needed
+
+// Core variables and mixins
+@import "variables.less";
+@import "mixins.less";
+
+// CSS Reset
+@import "vendor/styles/bootstrap/reset.less";
+
+// Grid system and page structure
+@import "vendor/styles/bootstrap/scaffolding.less";
+@import "vendor/styles/bootstrap/grid.less";
+@import "vendor/styles/bootstrap/layouts.less";
+
+// Base CSS
+@import "vendor/styles/bootstrap/type.less";
+@import "vendor/styles/bootstrap/code.less";
+@import "vendor/styles/bootstrap/forms.less";
+@import "vendor/styles/bootstrap/tables.less";
+
+// Components: common
+@import "vendor/styles/bootstrap/sprites.less";
+@import "vendor/styles/bootstrap/dropdowns.less";
+@import "vendor/styles/bootstrap/wells.less";
+@import "vendor/styles/bootstrap/component-animations.less";
+@import "vendor/styles/bootstrap/close.less";
+
+// Components: Buttons & Alerts
+@import "vendor/styles/bootstrap/buttons.less";
+@import "vendor/styles/bootstrap/button-groups.less";
+@import "vendor/styles/bootstrap/alerts.less"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
+
+// Components: Nav
+@import "vendor/styles/bootstrap/navs.less";
+@import "vendor/styles/bootstrap/navbar.less";
+@import "vendor/styles/bootstrap/breadcrumbs.less";
+@import "vendor/styles/bootstrap/pagination.less";
+@import "vendor/styles/bootstrap/pager.less";
+
+// Components: Popovers
+@import "vendor/styles/bootstrap/modals.less";
+@import "vendor/styles/bootstrap/tooltip.less";
+@import "vendor/styles/bootstrap/popovers.less";
+
+// Components: Misc
+@import "vendor/styles/bootstrap/thumbnails.less";
+@import "vendor/styles/bootstrap/media.less";
+@import "vendor/styles/bootstrap/labels-badges.less";
+@import "vendor/styles/bootstrap/progress-bars.less";
+@import "vendor/styles/bootstrap/accordion.less";
+@import "vendor/styles/bootstrap/carousel.less";
+@import "vendor/styles/bootstrap/hero-unit.less";
+
+// Utility classes
+@import "vendor/styles/bootstrap/utilities.less"; // Has to be last to override when necessary
