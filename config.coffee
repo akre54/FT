@@ -23,8 +23,7 @@ exports.config =
         'stylesheets/app.css': /^(app|vendor)/
         'test/stylesheets/test.css': /^test/
       order:
-        before: ['vendor/styles/normalize.css']
-        after: ['vendor/styles/helpers.css']
+        before: ['vendor/styles/bootstrap/bootstrap.less']
 
     templates:
       joinTo: 'javascripts/app.js'
