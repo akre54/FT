@@ -28,12 +28,16 @@ exports.config =
 
   coffeelint:
     options:
-      max_line_length:
-        value: 100
+      arrow_spacing:
         level: 'warn'
       indentation:
         level: 'ignore'
       line_endings:
+        level: 'warn'
+      max_line_length:
+        value: 100
+        level: 'warn'
+      no_empty_param_list:
         level: 'warn'
       no_stand_alone_at:
         level: 'error'
