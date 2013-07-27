@@ -4,12 +4,11 @@ template = require 'templates/customer_page'
 
 module.exports = class CustomerPageView extends PageView
   template: template
-  autoRender: no
+  autoRender: yes
 
-  initialize: ->
-    super
-    @delegate 'click', '#add-value', @openAddValue
-    @delegate 'click', '#make-purchase', @openMakePurchase
+  events:
+    'click #add-value': 'openAddValue'
+    'click #make-purchase': 'openMakePurchase'
 
   openAddValue: ->
     value = parseFloat prompt('lets add some value to this bitch'), 10

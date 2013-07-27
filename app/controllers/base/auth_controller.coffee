@@ -8,3 +8,4 @@ module.exports = class AuthenticatedController extends Controller
       return true
     else
       @redirectToRoute('login')
+      return false

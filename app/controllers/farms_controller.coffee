@@ -5,7 +5,6 @@ Farm = require 'models/farm'
 
 module.exports = class FarmsController extends AuthController
   title: 'My Farm'
-  historyURL: ''
 
   index: (params = {}) ->
     @user = mediator.user
