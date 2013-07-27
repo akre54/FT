@@ -11,6 +11,6 @@ module.exports = class Farm extends Model
 
   parse: (response) ->
     if response.customers?
-      mediator.user.customers = new CustomersCollection response.customers, parse: yes
+      mediator.user.customers.reset response.customers, parse: yes
       delete response.customers
     response
