@@ -30,10 +30,13 @@ module.exports = class Model extends Chaplin.Model
       base + data
     sep = if full.indexOf('?') >= 0 then '&' else '?'
     params = @urlParams()
-    payload = _.keys(params)
-      .map (key) -> [key, params[key]]
-      .filter (pair) -> pair[1] != null
-      .map (pair) -> pair.join('=')
+    payload = _(params).keys()
+      .map (key) ->
+        [key, params[key]]
+      .filter (pair) ->
+        pair[1]?
+      .map (pair) ->
+        pair.join('=')
       .join('&')
     url = if payload
       full + sep + payload
@@ -41,10 +44,3 @@ module.exports = class Model extends Chaplin.Model
       full
     url
 
-  fetch: (options) ->
-    @trigger 'loadStart'
-    options ?= {}
-    options.success = _.wrap (options.success ? ->), (func, args...) =>
-      func args...
-      @trigger 'load'
-    super

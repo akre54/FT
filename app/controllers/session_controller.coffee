@@ -9,7 +9,7 @@ module.exports = class SessionController extends Controller
   # This just hardcoded here to avoid async loading of service providers.
   # In the end you might want to do this.
   @serviceProviders = {
-    #farmTab: new FarmTab()
+    farmTab: new FarmTab()
   }
 
   # Was the login status already determined?

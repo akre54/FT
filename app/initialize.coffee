@@ -1,6 +1,6 @@
 $ = require 'jquery'
 Application = require 'application'
+routes = require 'routes'
 
 $ ->
-  app = new Application()
-  app.initialize()
+  new Application { title: 'Farm Tab', routes }

@@ -4,19 +4,7 @@ exports.config =
     javascripts:
       joinTo:
         'javascripts/app.js': /^app/
-        'javascripts/vendor.js': /^vendor/
-        'test/javascripts/test.js': /^test(\/|\\)(?!vendor)/
-        'test/javascripts/test-vendor.js': /^test(\/|\\)(?=vendor)/
-      order:
-        # Files in `vendor` directories are compiled before other files
-        # even if they aren't specified in order.before.
-        before: [
-          'vendor/scripts/console-helper.js',
-          'vendor/scripts/jquery-1.9.0.js',
-          'vendor/scripts/underscore-1.4.3.js',
-          'vendor/scripts/backbone-0.9.10.js',
-          'vendor/scripts/exports.js'
-        ]
+        'javascripts/vendor.js': /^(bower_components|vendor)/
 
     stylesheets:
       joinTo:
@@ -26,18 +14,19 @@ exports.config =
     templates:
       joinTo: 'javascripts/app.js'
 
-  coffeelint:
-    options:
-      arrow_spacing:
-        level: 'warn'
-      indentation:
-        level: 'ignore'
-      line_endings:
-        level: 'warn'
-      max_line_length:
-        value: 100
-        level: 'warn'
-      no_empty_param_list:
-        level: 'warn'
-      no_stand_alone_at:
-        level: 'error'
+  plugins:
+    coffeelint:
+      options:
+        arrow_spacing:
+          level: 'warn'
+        max_line_length:
+          value: 100
+          level: 'warn'
+        indentation:
+          level: 'ignore'
+        line_endings:
+          level: 'warn'
+        no_empty_param_list:
+          level: 'warn'
+        no_stand_alone_at:
+          level: 'error'

@@ -1,23 +1,24 @@
 mediator = require 'mediator'
-Controller = require 'controllers/base/controller'
+AuthController = require 'controllers/base/auth_controller'
 Customer = require 'models/customer'
 CustomerPageView = require 'views/customer_page_view'
 CustomersCollection = require 'models/customers_collection'
 CustomersCollectionView = require 'views/customers_collection_view'
 CreateCustomerView = require 'views/create_customer_view'
 
-module.exports = class CustomersController extends Controller
+module.exports = class CustomersController extends AuthController
   historyURL: 'customers'
 
-  index: ->
-    mediator.user.customers or= new CustomersCollection()
+  beforeAction: (params) ->
+    @customers = mediator.user.customers
 
-    @collection = mediator.user.customers
+  index: ->
     @view = new CustomersCollectionView {@collection, container: '#page-container'}
     @collection.fetch() if @collection.isEmpty()
 
   show: (params) ->
-    @model = new Customer id: params.id
+    debugger
+    @model = @customers.get(params.id) || new Customer id: params.id
     @view = new CustomerPageView {@model}
     @model.fetch()
 
@@ -28,4 +29,4 @@ module.exports = class CustomersController extends Controller
     @view.subscribeEvent 'customer:created', (response, customer) ->
       alert 'customer created!'
       mediator.user.customers.add customer
-      mediator.publish '!startupController', 'farms'
+      mediator.publish '!router:routeByName', 'farms'

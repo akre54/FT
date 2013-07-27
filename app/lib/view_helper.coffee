@@ -1,5 +1,5 @@
 mediator = require 'mediator'
-utils = require 'chaplin/lib/utils'
+{utils} = require 'chaplin'
 
 # Application-specific view helpers
 # ---------------------------------
@@ -45,4 +45,4 @@ Handlebars.registerHelper 'url', (routeName, params..., options) ->
   url = null
   mediator.publish '!router:reverse', routeName, params, (result) ->
     url = result
-  "/#{url}"
+  url

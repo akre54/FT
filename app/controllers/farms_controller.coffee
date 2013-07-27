@@ -1,18 +1,18 @@
-Controller = require 'controllers/base/controller'
+AuthController = require 'controllers/base/auth_controller'
 mediator = require 'mediator'
 FarmView = require 'views/farm_view'
 Farm = require 'models/farm'
 
-module.exports = class FarmsController extends Controller
+module.exports = class FarmsController extends AuthController
   title: 'My Farm'
   historyURL: ''
 
   index: (params = {}) ->
-    @model = mediator.user
+    @user = mediator.user
 
-    if @model.isNew()
-      @model.fetch
+    if @user.isNew()
+      @user.fetch
         success: =>
-          @view or= new FarmView {@model}
+          @view or= new FarmView {@user}
     else
-      @view or= new FarmView {@model}
+      @view or= new FarmView {@user}
