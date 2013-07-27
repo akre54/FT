@@ -1,7 +1,7 @@
 _ = require 'underscore'
 utils = require 'lib/utils'
 View = require 'views/base/view'
-template = require 'views/templates/login'
+template = require 'templates/login'
 
 module.exports = class LoginView extends View
   template: template

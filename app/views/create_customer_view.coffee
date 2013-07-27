@@ -1,5 +1,5 @@
 FormView = require 'views/base/form_view'
-template = require 'views/templates/create_customer'
+template = require 'templates/create_customer'
 Customer = require 'models/customer'
 
 module.exports = class CreateCustomerView extends FormView

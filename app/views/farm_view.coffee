@@ -1,6 +1,6 @@
 mediator = require 'mediator'
 PageView = require 'views/base/page_view'
-template = require 'views/templates/farm'
+template = require 'templates/farm'
 Customer = require 'models/customer'
 CustomersCollection = require 'models/customers_collection'
 CustomersCollectionView = require 'views/customers_collection_view'

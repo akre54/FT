@@ -1,4 +1,4 @@
 View = require 'views/base/view'
-template = require 'views/templates/site'
+template = require 'templates/site'
 
 class SiteView extends View

@@ -1,6 +1,6 @@
 PageView = require 'views/base/page_view'
 Transaction = require 'models/transaction'
-template = require 'views/templates/customer_page'
+template = require 'templates/customer_page'
 
 module.exports = class CustomerPageView extends PageView
   template: template

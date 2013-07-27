@@ -1,6 +1,6 @@
 $ = require 'jquery'
 View = require 'views/base/view'
-template = require 'views/templates/spinner'
+template = require 'templates/spinner'
 
 module.exports = class SpinnerView extends View
   template: template
