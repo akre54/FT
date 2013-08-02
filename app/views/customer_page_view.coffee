@@ -11,6 +11,9 @@ module.exports = class CustomerPageView extends View
     'click #add-value': 'openAddValue'
     'click #make-purchase': 'openMakePurchase'
 
+  listen:
+    'change model': 'render'
+
   openAddValue: ->
     value = parseFloat prompt('lets add some value to this bitch')
     return unless value? && value > 0
@@ -21,7 +24,6 @@ module.exports = class CustomerPageView extends View
 
     transaction.save null, success:  =>
       @model.set balance: value + @model.get('balance')
-      @render()
 
   openMakePurchase: ->
     value = parseFloat prompt('lets make a purchase')
@@ -32,4 +34,3 @@ module.exports = class CustomerPageView extends View
       amount: value
     transaction.save null, success:  =>
       @model.set balance: @model.get('balance') - value
-      @render()

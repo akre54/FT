@@ -17,6 +17,6 @@ module.exports = class Application extends Chaplin.Application
     mediator.user = new Farm
     mediator.user.customers = new CustomersCollection
     # Set up any semi-globals
-    mediator.accessToken = 'somerandomcraptobesetlater'
+    mediator.accessToken = '6099440a19fcd878'
     # Seal the mediator
     super

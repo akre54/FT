@@ -6,12 +6,12 @@ CustomersCollectionView = require 'views/customers_collection_view'
 CreateCustomerView = require 'views/create_customer_view'
 
 module.exports = class CustomersController extends AuthController
-  beforeAction: (params) ->
+  beforeAction: ->
     @collection = mediator.user.customers
     super
 
   index: ->
-    @view = new CustomersCollectionView {@collection, container: '#page-container'}
+    @view = new CustomersCollectionView { @collection, region: 'page' }
     @collection.fetch() if @collection.isEmpty()
 
   show: (params) ->
@@ -22,9 +22,13 @@ module.exports = class CustomersController extends AuthController
       @model.fetch()
     @view = new CustomerPageView {@model}
 
-  create: (params) ->
-    @model = @collection.create {}, wait: true
+  new: (params) ->
+    @model = @collection.create null, wait: true
     @view = new CreateCustomerView {@model}
 
     @view.subscribeEvent 'customer:created', (response, customer) ->
       mediator.publish '!router:routeByName', 'farms'
+
+  dispose: ->
+    @model = @collection = null # remove reference so Chaplin wont dispose the model/collection. TODO implement composer
+    super

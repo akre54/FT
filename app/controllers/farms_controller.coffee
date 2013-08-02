@@ -7,11 +7,11 @@ module.exports = class FarmsController extends AuthController
   title: 'My Farm'
 
   index: (params = {}) ->
-    @user = mediator.user
+    @model = mediator.user
 
-    if @user.isNew()
-      @user.fetch
+    if @model.isNew()
+      @model.fetch
         success: =>
-          @view or= new FarmView {@user}
+          @view or= new FarmView {@model}
     else
-      @view or= new FarmView {@user}
+      @view or= new FarmView {@model}
