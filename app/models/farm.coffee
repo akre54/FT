@@ -9,7 +9,7 @@ module.exports = class Farm extends Model
   urlPath: ->
     '/farms'
 
-  initialize (options) ->
+  initialize: (options) ->
     @customers = new CustomersCollection
 
   parse: (response) ->
