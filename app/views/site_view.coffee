@@ -4,6 +4,7 @@ template = require 'templates/site'
 module.exports = class SiteView extends View
   container: 'body'
   id: 'site-container'
+  className: 'container'
   regions:
     header: '#header-container'
     page: '#page-container'

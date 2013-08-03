@@ -1,6 +1,6 @@
 mediator = require 'mediator'
 Controller = require 'controllers/base/controller'
-User = require 'models/user'
+Farm = require 'models/farm'
 LoginView = require 'views/login_view'
 FarmTab = require 'lib/services/farm_tab'
 
@@ -47,7 +47,7 @@ module.exports = class SessionController extends Controller
 
   # Instantiate the user with the given data
   createUser: (userData) ->
-    mediator.user = new User userData
+    mediator.user = new Farm userData
 
   # Try to get an existing session from one of the login providers
   getSession: ->

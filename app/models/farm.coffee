@@ -9,6 +9,9 @@ module.exports = class Farm extends Model
   urlPath: ->
     '/farms'
 
+  initialize (options) ->
+    @customers = new CustomersCollection
+
   parse: (response) ->
     if response.customers?
       mediator.user.customers.reset response.customers, parse: yes

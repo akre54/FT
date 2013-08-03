@@ -6,12 +6,14 @@ template = require 'templates/login'
 module.exports = class LoginView extends View
   template: template
   autoRender: true
-  container: '#page-container'
+  region: 'page'
   id: 'login'
 
   # Expects the serviceProviders in the options.
   initialize: (options) ->
     super
+    debugger
+    @publishEvent '!adjustTitle', 'Login'
     @initButtons options.serviceProviders
 
   # In this project we currently only have one service provider and therefore

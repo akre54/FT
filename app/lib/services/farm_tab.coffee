@@ -3,7 +3,7 @@ Backbone = require 'backbone'
 config = require 'config'
 mediator = require 'mediator'
 ServiceProvider = require 'lib/services/service_provider'
-User = require 'models/user'
+Farm = require 'models/farm'
 
 module.exports = class FarmTab extends ServiceProvider
   baseUrl: config.api.root
@@ -57,7 +57,7 @@ module.exports = class FarmTab extends ServiceProvider
     if not response or status is 'error'
       @publishEvent 'logout'
     else
-      parsed = User::parse.call(null, response)
+      parsed = Farm::parse.call(null, response)
       @publishEvent 'serviceProviderSession', _.extend parsed,
         provider: this
         userId: response.id

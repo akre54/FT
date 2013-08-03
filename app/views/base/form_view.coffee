@@ -4,7 +4,7 @@ SpinnerView = require 'views/spinner_view'
 module.exports = class FormView extends View
   tagName: 'form'
   className: 'create-customer-form'
-  container: '#page-container'
+  region: 'page'
   autoRender: yes
 
   initialize: ->
