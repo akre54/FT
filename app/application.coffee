@@ -1,7 +1,7 @@
 Chaplin = require 'chaplin'
 mediator = require 'mediator'
 Farm = require 'models/farm'
-SessionController = require 'controllers/session_controller'
+SessionController = require 'controllers/persistent/session_controller'
 
 # The application object
 module.exports = class Application extends Chaplin.Application

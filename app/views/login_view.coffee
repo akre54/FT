@@ -6,7 +6,7 @@ template = require 'templates/login'
 module.exports = class LoginView extends View
   template: template
   autoRender: true
-  region: 'page'
+  region: 'login'
   id: 'login'
 
   # Expects the serviceProviders in the options.
