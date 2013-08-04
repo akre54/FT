@@ -1,4 +1,17 @@
-<input type="text" name="name" placeholder="name" />
-<input type="email" name="email" placeholder="email" />
-<input type="number" name="pin" placeholder="PIN" minlength="5" maxlength="6" />
-<input id="create-customer" name="submit" type="submit" value="add customer"/>
+<form>
+  <fieldset>
+    <div class="form-group">
+      <label for="customer-name">Customer name</label>
+      <input id="customer-name" type="text" class="form-control" name="name" placeholder="name" />
+    </div>
+    <div class="form-group">
+      <label for="customer-email">Email address</label>
+      <input id="customer-email" type="email" class="form-control" name="email" placeholder="email" />
+    </div>
+    <div class="form-group">
+      <label for="customer-pin">PIN</label>
+      <input id="customer-pin" type="number" class="form-control" name="pin" placeholder="00000" minlength="5" maxlength="6" />
+    </div>
+    <button id="create-customer" type="submit" class="btn btn-default">Submit</button>
+  </fieldset>
+</form>

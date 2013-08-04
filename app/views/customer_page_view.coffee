@@ -14,6 +14,10 @@ module.exports = class CustomerPageView extends View
   listen:
     'change model': 'render'
 
+  render: ->
+    @publishEvent '!adjustHeaderTitle', @model.get('name') || 'Customer page'
+    super
+
   openAddValue: ->
     value = parseFloat prompt('lets add some value to this bitch')
     return unless value? && value > 0
@@ -23,7 +27,7 @@ module.exports = class CustomerPageView extends View
       amount: value
 
     transaction.save null, success:  =>
-      @model.set balance: value + @model.get('balance')
+      @model.set balance: @model.get('balance') + value
 
   openMakePurchase: ->
     value = parseFloat prompt('lets make a purchase')

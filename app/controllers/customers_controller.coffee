@@ -20,6 +20,7 @@ module.exports = class CustomersController extends AuthController
       @model = new Customer id: params.id
       @collection.add {@model}
       @model.fetch()
+
     @view = new CustomerPageView {@model}
 
   new: (params) ->

@@ -8,11 +8,15 @@ module.exports = class HeaderView extends View
   template: template
   autoRender: yes
 
+  getTemplateData: ->
+    { @title, @previous_text }
+
   initialize: ->
     super
     @subscribeEvent 'loginStatus', @render
     @subscribeEvent 'startupController', @render
-    @subscribeEvent '!adjustTitle', @render
+    @subscribeEvent '!adjustHeaderPreviousText', (@previous_text) -> @render()
+    @subscribeEvent '!adjustHeaderTitle', (@title) -> @render()
 
   events:
     'click .button-prev': 'goBack'

@@ -13,7 +13,7 @@ module.exports = class LoginView extends View
   initialize: (options) ->
     super
     debugger
-    @publishEvent '!adjustTitle', 'Login'
+    @publishEvent '!adjustHeaderTitle', 'Log into your Farm Tab account'
     @initButtons options.serviceProviders
 
   # In this project we currently only have one service provider and therefore
