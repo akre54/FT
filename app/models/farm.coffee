@@ -12,6 +12,7 @@ module.exports = class Farm extends Model
   initialize: (options) ->
     @customers = new CustomersCollection
 
+  # context-less because service_provider.coffee needs to call using prototype
   parse: (response) ->
     if response.customers?
       mediator.user.customers.reset response.customers, parse: yes
