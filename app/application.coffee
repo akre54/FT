@@ -9,6 +9,10 @@ module.exports = class Application extends Chaplin.Application
   # “Controller title – Site title” (see Layout#adjustTitle)
   title: 'Farm Tab'
 
+  initialize: ->
+    @initControllers()
+    super
+
   initControllers: ->
     @sessionController = new SessionController
 
@@ -21,5 +25,4 @@ module.exports = class Application extends Chaplin.Application
     # Set up any semi-globals
     mediator.accessToken = '6099440a19fcd878'
     # Seal the mediator
-    @initControllers()
     super
