@@ -8,18 +8,19 @@ Farm = require 'models/farm'
 module.exports = class FarmTab extends ServiceProvider
   baseUrl: config.api.root
 
+  listenTo:
+    'auth:callback:farmtab mediator': 'loginHandler'
+
   constructor: ->
     super
     @accessToken = localStorage.getItem 'accessToken'
-    authCallback = _(@loginHandler).bind(this, @loginHandler)
-    mediator.subscribe 'auth:callback:farmtab', authCallback
 
   load: ->
     @resolve()
     this
 
   isLoaded: ->
-    yes
+    @isResolved()
 
   ajax: (type, url, data) ->
     url = @baseUrl + url
@@ -27,8 +28,8 @@ module.exports = class FarmTab extends ServiceProvider
     Backbone.ajax {url, data, type, dataType: 'json'}
 
   # Trigger login popup
-  triggerLogin: (loginContext) ->
-    callback = _(@loginHandler).bind(this, @loginHandler)
+  triggerLogin: (@loginContext) ->
+    callback = _.bind @loginHandler, this, @loginContext
     window.location = URL
 
   # Callback for the login popup

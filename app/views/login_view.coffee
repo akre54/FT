@@ -12,17 +12,15 @@ module.exports = class LoginView extends View
   # Expects the serviceProviders in the options.
   initialize: (options) ->
     super
-    debugger
-    @publishEvent '!adjustHeaderTitle', 'Log into your Farm Tab account'
-    @initButtons options.serviceProviders
+    @on 'addedToDOM', -> @initButtons options.serviceProviders
 
   # In this project we currently only have one service provider and therefore
   # one button. But this should allow for different service providers.
   initButtons: (serviceProviders) ->
     _.each serviceProviders, (serviceProvider, serviceProviderName) =>
       bind = (fn) =>
-        _(fn).bind this, serviceProviderName, serviceProvider
-
+        _.bind fn, this, serviceProviderName, serviceProvider
+      debugger
       buttonSelector = ".#{serviceProviderName}"
       @$(buttonSelector).addClass('service-loading')
 
