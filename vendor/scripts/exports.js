@@ -1,17 +1,18 @@
-require.define({'underscore': function(exports, require, module) {
-  module.exports = _.noConflict();
-}});
-
-require.define({'backbone': function(exports, require, module) {
-  module.exports = Backbone.noConflict();
-}});
-
-require.define({'jquery': function(exports, require, module) {
-  $.noConflict();
-  module.exports = require('backbone').$;
-}});
-require.define({'chaplin': function(exports, require, module) {
-  var chaplin = window.Chaplin;
-  delete window.Chaplin;
-  module.exports = chaplin;
-}});
+require.define({
+  'underscore': function(exports, require, module) {
+    module.exports = _.noConflict();
+    delete _;
+  },
+  'backbone': function(exports, require, module) {
+    module.exports = Backbone.noConflict();
+    delete Backbone;
+  },
+  'jquery': function(exports, require, module) {
+    module.exports = $.noConflict(true);
+    delete $;
+  },
+  'chaplin': function(exports, require, module) {
+    module.exports = window.Chaplin;
+    delete window.Chaplin;
+  }
+});
