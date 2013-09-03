@@ -1,27 +1,33 @@
 @import 'mixins';
 
 .header {
-  width: 476px;
+  width: 66.6%;
   margin: 0 auto;
   padding: 10px;
   .border-bottom-radius(5px);
   background-color: #4276b6;
 
-  &-link {
-    margin-right: 32px;
-    text-decoration: none;
+  h2 {
+    color: white;
+    text-align: center;
+  }
+
+}
+
+.header-link {
+  margin-right: 32px;
+  text-decoration: none;
+  color: #eee;
+
+  &:visited {
     color: #eee;
+  }
 
-    &:visited {
-      color: #eee;
-    }
+  &:hover {
+    text-decoration: underline;
+  }
 
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
+  &:last-child {
+    margin-right: 0;
   }
 }
