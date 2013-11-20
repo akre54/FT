@@ -4,7 +4,7 @@ template = require 'templates/customer_page'
 
 module.exports = class CustomerPageView extends View
   template: template
-  container: '#page-container'
+  region: 'page'
   autoRender: yes
 
   events:
