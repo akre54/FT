@@ -10,7 +10,6 @@ module.exports = class Model extends Chaplin.Model
   _(@prototype).extend Chaplin.SyncMachine
 
   initialze: ->
-    super
     @on 'request', @beginSync
     @on 'sync', @finishSync
 
