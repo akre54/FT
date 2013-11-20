@@ -9,4 +9,6 @@ else
 
 config.api.versionRoot = config.api.root
 
+config.accessToken = '6099440a19fcd878'
+
 module.exports = config

@@ -23,7 +23,6 @@ module.exports = class Application extends Chaplin.Application
     # TODO: this should be null until logged in. rest will get set on init
     mediator.user = new Farm
     # Set up any semi-globals
-    mediator.accessToken = '6099440a19fcd878'
     localStorage.setItem 'accessToken', mediator.accessToken
     # Seal the mediator
     super
