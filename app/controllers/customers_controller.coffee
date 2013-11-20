@@ -15,21 +15,21 @@ module.exports = class CustomersController extends AuthController
     @collection.fetch() if @collection.isEmpty()
 
   show: (params) ->
-    @model = @collection.get(params.id)
+    @model = @collection.get params.id
+
     unless @model
-      @model = new Customer id: params.id
-      @collection.add {@model}
+      @model = @collection.add id: params.id
       @model.fetch()
 
     @view = new CustomerPageView {@model}
 
   new: (params) ->
-    @model = new @collection.model
+    @model = new @collection.model params
     @view = new CreateCustomerView {@model}
 
     @view.subscribeEvent 'customer:created', (response, customer) =>
       @collection.add @model
-      mediator.publish '!router:routeByName', 'home'
+      @redirectTo 'home'
 
   dispose: ->
     @model = @collection = null # remove reference so Chaplin wont dispose the model/collection. TODO implement composer
