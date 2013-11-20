@@ -6,8 +6,7 @@ CustomersCollection = require 'models/customers_collection'
 module.exports = class Farm extends Model
   urlKey: ''
 
-  urlPath: ->
-    '/farms'
+  urlPath: '/farms'
 
   initialize: (options) ->
     @customers = new CustomersCollection
