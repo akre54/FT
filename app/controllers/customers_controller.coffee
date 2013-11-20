@@ -7,8 +7,8 @@ CreateCustomerView = require 'views/create_customer_view'
 
 module.exports = class CustomersController extends AuthController
   beforeAction: ->
-    @collection = mediator.user.customers
     super
+    @collection = mediator.user.customers
 
   index: ->
     @view = new CustomersCollectionView { @collection, region: 'page' }
