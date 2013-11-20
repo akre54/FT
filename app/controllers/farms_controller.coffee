@@ -6,12 +6,7 @@ Farm = require 'models/farm'
 module.exports = class FarmsController extends AuthController
   title: 'My Farm'
 
-  index: (params = {}) ->
-    @model = mediator.user
-
-    if @model.isNew()
-      @model.fetch
-        success: =>
-          @view or= new FarmView {@model}
-    else
-      @view or= new FarmView {@model}
+  index: ->
+    user = mediator.user
+    @view = new FarmView { model: user, region: 'page' }
+    user.fetch().then @view.render
