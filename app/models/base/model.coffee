@@ -7,6 +7,13 @@ module.exports = class Model extends Chaplin.Model
   apiRoot: config.api.versionRoot
   urlKey: 'id'
 
+  _(@prototype).extend Chaplin.SyncMachine
+
+  initialze: ->
+    super
+    @on 'request', @beginSync
+    @on 'sync', @finishSync
+
   urlPath: ->
     ''
 
@@ -14,13 +21,9 @@ module.exports = class Model extends Chaplin.Model
     access_token: mediator.accessToken
 
   urlRoot: ->
-    urlPath = @urlPath()
+    urlPath = _.result this, 'urlPath'
     if urlPath
       @apiRoot + urlPath
-    else if @collection
-      @collection.url()
-    else
-      throw new Error('Model must redefine urlPath')
 
   url: (data = '') ->
     base = @urlRoot()
@@ -43,4 +46,3 @@ module.exports = class Model extends Chaplin.Model
     else
       full
     url
-

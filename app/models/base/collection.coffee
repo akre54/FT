@@ -7,6 +7,11 @@ module.exports = class Collection extends Chaplin.Collection
 
   _(@prototype).extend Chaplin.SyncMachine
 
+  initialze: ->
+    super
+    @on 'request', @beginSync
+    @on 'sync', @finishSync
+
   apiRoot: config.api.versionRoot
   model: Model
 
@@ -14,4 +19,4 @@ module.exports = class Collection extends Chaplin.Collection
     ''
 
   url: ->
-    @apiRoot + @urlPath()
+    @apiRoot + _.result this, 'urlPath'
