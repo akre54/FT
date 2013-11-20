@@ -29,7 +29,6 @@
   "devDependencies": {
     "coffeelint-brunch": ">= 1.0 < 1.8",
     "chai": "1.2.0",
-    "mbradshawabs/ajaxreplay": "~1.1.0",
     "sinon": "1.4.2",
     "sinon-chai": "2.1.2"
   }
