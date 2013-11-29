@@ -13,8 +13,8 @@ module.exports = class HeaderView extends View
   listen:
     'loginStatus': 'render'
     'startupController': 'render'
-    '!adjustHeaderPreviousText': (@previous_text) -> @render()
-    '!adjustHeaderTitle': (@title) -> @render()
+    '!adjustHeaderPreviousText mediator': (@previous_text) -> @render()
+    '!adjustHeaderTitle mediator': (@title) -> @render()
 
   events:
     'click .button-prev': 'goBack'
