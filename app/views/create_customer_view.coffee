@@ -4,6 +4,7 @@ Customer = require 'models/customer'
 
 module.exports = class CreateCustomerView extends FormView
   template: template
+  region: 'page'
   className: 'create-customer-form'
   saveEvent: 'customer:created'
 
